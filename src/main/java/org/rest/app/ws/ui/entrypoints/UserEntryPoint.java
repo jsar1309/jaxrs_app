@@ -29,14 +29,18 @@ public class UserEntryPoint {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public UserProfileRest createUser(CreateUserRequestModel requestModel){
         LOG.debug(requestModel);
+        System.out.println("Entrada del servicio: " + requestModel);
         UserProfileRest userProfileRest = new UserProfileRest();
 
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(requestModel, userDTO);
+        System.out.println("UserDTO: " + userDTO);
 
         UserDTO dto = usersService.createUser(userDTO);
+        System.out.println("dto capa interna: " + dto);
 
         BeanUtils.copyProperties(dto, userProfileRest);
+        System.out.println("respuesta del servicio: " + userProfileRest);
         LOG.debug(userProfileRest);
         return userProfileRest;
     }
