@@ -11,10 +11,10 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${db.database_driver}"/>
-        <property name="url" value="${db.url}"/>
-        <property name="username" value="${db.username}"/>
-        <property name="password" value="*${db.password}"/>
+        <property name="driverClassName" value="#{systemEnvironment['DB_DRIVER']}"/>
+        <property name="url" value="#{systemEnvironment['DB_URL']}"/>
+        <property name="username" value="#{systemEnvironment['DB_USERNAME']}"/>
+        <property name="password" value="#{systemEnvironment['DB_PASSWORD']}"/>
     </bean>
 
     <bean id="sessionFactory"
